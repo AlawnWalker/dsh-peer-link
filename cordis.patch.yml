@@ -1,0 +1,24 @@
+# ============================================================================
+# dsh-peer-link — unified bundle: local per-session endpoints + remote agents
+# ============================================================================
+# Local half (no config needed): each open dsh session registers its own peer
+# endpoint (`dsh-<short>`, Windows named pipe / unix socket).
+#
+# Remote half: one entry per agent endpoint on another machine.
+#   outbound  ssh -N -L bindHost:<localPort>:<remoteSocket> <sshTarget>
+#   inbound   ssh -N -R <remoteListenPath>:<bindHost>:<inboxPort> <sshTarget>
+# Leave `remotes` empty to load tools only (no tunnels).
+#
+# Tools: peer_send / peer_list (target = local peer name, remote name, or path).
+# ============================================================================
+- insert:
+    - id: dsh-peer-link
+      name: dsh-peer-link
+      config:
+        name: dsh
+        injectInbound: true
+        registerTool: true
+        bindHost: '127.0.0.1'
+        restartDelayMs: 1000
+        maxRestartDelayMs: 30000
+        remotes: []
