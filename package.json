@@ -19,10 +19,6 @@
       "types": "./lib/peer-registry.d.ts",
       "default": "./lib/peer-registry.js"
     },
-    "./client": {
-      "types": "./lib/client/index.d.ts",
-      "default": "./lib/client.js"
-    },
     "./src/*": "./src/*",
     "./package.json": "./package.json"
   },
